@@ -10,7 +10,7 @@ public class Television {
     // Some code skipped here
     public void executeOffButton() {
         System.out.println("You pressed the Off button.");
-        // Delegating the state behavior
+        // Delegating the state behavior9
         currentState.pressOffButton(this);
     }
     public void executeOnButton() {
