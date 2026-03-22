@@ -1,14 +1,11 @@
 package library_system;
 
 import library_system.dto.BookDto;
-import library_system.entity.Book;
-import library_system.entity.PhysicalBook;
 import library_system.factory.BookFactory;
 import library_system.factory.EBookFactory;
 import library_system.factory.PhysicalBookFactory;
 import library_system.singleton.Library;
 
-import java.util.List;
 
 public class Client {
     public static void main(String[] args) {
@@ -33,5 +30,10 @@ public class Client {
 
         library.show();
 
+        System.out.println("============= Tim kiem sach  ============");
+        System.out.println("============= Tim theo title  ============");
+        library.searchForTitle("Tâm");
+        System.out.println("============= Tim theo author  ============");
+        library.searchForAuhor("a");
     }
 }

@@ -1,6 +1,9 @@
 package library_system.singleton;
 
 import library_system.entity.Book;
+import library_system.strategy.SeachBookForAuthor;
+import library_system.strategy.SearchBookContext;
+import library_system.strategy.SearchBookForName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +11,7 @@ import java.util.List;
 public class Library {
     private static Library instance;
     private List<Book> books = new ArrayList<Book>();
+    private SearchBookContext searchBookContext;
     private Library() {};
 
     public static Library getInstance() {
@@ -26,6 +30,16 @@ public class Library {
             System.out.println(b.getClass());
             System.out.println(b);
         }
+    }
+
+    public void searchForTitle(String key){
+        searchBookContext = new SearchBookContext(new SearchBookForName());
+        searchBookContext.showBooks(key,books);
+    }
+
+    public void searchForAuhor(String key){
+        searchBookContext = new SearchBookContext(new SeachBookForAuthor());
+        searchBookContext.showBooks(key,books);
     }
 
     public List<Book> getBooks() { return books; }
