@@ -1,9 +1,11 @@
 package library_system;
 
 import library_system.dto.BookDto;
+import library_system.entity.User;
 import library_system.factory.BookFactory;
 import library_system.factory.EBookFactory;
 import library_system.factory.PhysicalBookFactory;
+import library_system.observer.LibraryObserver;
 import library_system.singleton.Library;
 
 
@@ -35,5 +37,18 @@ public class Client {
         library.searchForTitle("Tâm");
         System.out.println("============= Tim theo author  ============");
         library.searchForAuhor("a");
+
+
+        System.out.println("============= user theo doi trang thai sach  ============");
+        LibraryObserver user1 = new User(111, "Tri");
+        LibraryObserver user2 = new User(112, "Minh");
+        library.addUserTolibrarian(user1,library.findById("P001"));
+        library.addUserTolibrarian(user2,library.findById("P001"));
+
+        library.updateBook("P001", "Dế Mèn Phiêu Lưu Ký kkk");
+
+
+
+
     }
 }
