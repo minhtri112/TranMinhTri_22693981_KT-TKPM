@@ -25,4 +25,8 @@ public class EBook extends Book{
     public void setLink(String link) {
         this.link = link;
     }
+    @Override
+    public String toString() {
+        return super.toString() + String.format(" | Loại: E-Book | Dung lượng: %-5.2fMB | Link: %s", fileSize, link);
+    }
 }

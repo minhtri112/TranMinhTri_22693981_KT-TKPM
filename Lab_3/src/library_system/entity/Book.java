@@ -33,4 +33,8 @@ public class Book {
     public void setTitle(String title) {
         this.title = title;
     }
+    @Override
+    public String toString() {
+        return String.format("ID: %-5s | Tên: %-20s | Tác giả: %-15s", id, title, author);
+    }
 }

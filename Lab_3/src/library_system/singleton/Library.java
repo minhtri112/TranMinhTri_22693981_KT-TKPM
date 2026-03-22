@@ -1,8 +1,6 @@
 package library_system.singleton;
 
 import library_system.entity.Book;
-import library_system.entity.EBook;
-import library_system.entity.PhysicalBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +18,14 @@ public class Library {
     }
     public void addBook(Book book) {
         books.add(book);
+    }
+
+    public void show(){
+        System.out.println("Tổng số sách trong thư viện: " + books.size());
+        for (Book b : books) {
+            System.out.println(b.getClass());
+            System.out.println(b);
+        }
     }
 
     public List<Book> getBooks() { return books; }

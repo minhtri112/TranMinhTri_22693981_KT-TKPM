@@ -15,4 +15,9 @@ public class PhysicalBook extends Book{
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format(" | Loại: Sách Giấy | Trọng lượng: %dg", weight);
+    }
 }
