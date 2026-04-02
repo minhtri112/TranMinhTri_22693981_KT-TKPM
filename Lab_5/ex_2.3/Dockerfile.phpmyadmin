@@ -1,0 +1,8 @@
+# Chọn base image phpMyAdmin mới nhất
+FROM phpmyadmin:latest
+
+# Port mặc định
+EXPOSE 80
+
+# PMA_HOST sẽ được override trong docker-compose
+CMD ["apache2-foreground"]
