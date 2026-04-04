@@ -1,0 +1,12 @@
+services:
+  mydb:
+    image: mysql:latest
+    container_name: mysql_container
+    ports:
+      - "3305:3006"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:
