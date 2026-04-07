@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 15s # Cứ mỗi 15 giây, Prometheus sẽ đi lấy dữ liệu 1 lần
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090'] # Tự giám sát chính bản thân Prometheus
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['node-exporter:9100'] # Lấy dữ liệu từ container Node Exporter

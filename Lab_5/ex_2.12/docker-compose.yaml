@@ -1,0 +1,41 @@
+services:
+  # 1. Node Exporter: Thu thập thông số của máy chủ/hệ điều hành
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node_exporter
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
+
+  # 2. Prometheus: Kéo (scrape) và lưu trữ dữ liệu từ Node Exporter
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml # Mount file cấu hình vào container
+      - prometheus_data:/prometheus # Lưu trữ dữ liệu để không mất khi restart
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: unless-stopped
+    depends_on:
+      - node-exporter
+
+  # 3. Grafana: Vẽ biểu đồ trực quan dựa trên dữ liệu của Prometheus
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Mật khẩu đăng nhập mặc định (tài khoản: admin)
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus_data:
+  grafana_data:

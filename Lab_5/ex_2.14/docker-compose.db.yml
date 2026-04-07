@@ -1,0 +1,6 @@
+services:
+  my_database:
+    image: mongo:latest
+    container_name: database_app
+    networks:
+      - shared_network # Khai báo để dùng chung mạng

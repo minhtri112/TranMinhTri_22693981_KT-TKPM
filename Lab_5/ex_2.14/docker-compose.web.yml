@@ -1,0 +1,8 @@
+services:
+  my_web:
+    image: nginx:alpine
+    container_name: web_app
+    ports:
+      - "8080:80"
+    networks:
+      - shared_network # Khai báo để dùng chung mạng

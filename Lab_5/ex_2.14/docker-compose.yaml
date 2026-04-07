@@ -1,0 +1,9 @@
+# Khai báo nạp các file compose khác
+include:
+  - docker-compose.db.yml
+  - docker-compose.web.yml
+
+# Khai báo mạng chung để các container trong 2 file trên có thể giao tiếp với nhau
+networks:
+  shared_network:
+    driver: bridge

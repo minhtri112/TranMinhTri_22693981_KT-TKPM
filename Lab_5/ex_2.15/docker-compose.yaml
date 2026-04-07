@@ -1,0 +1,15 @@
+
+services:
+  my_redis:
+    image: redis:alpine
+    container_name: limited_redis
+    ports:
+      - "6379:6379"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'    # Giới hạn tối đa chỉ được dùng 50% sức mạnh của 1 nhân CPU
+          memory: 256M   # Giới hạn dung lượng RAM tối đa là 256 Megabytes
+        reservations:
+          cpus: '0.1'    # (Tùy chọn) Đảm bảo luôn giữ trước tối thiểu 10% CPU cho container này
+          memory: 128M   # (Tùy chọn) Đảm bảo luôn giữ trước tối thiểu 128MB RAM

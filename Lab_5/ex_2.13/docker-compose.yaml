@@ -1,0 +1,8 @@
+
+services:
+  react-frontend:
+    build: . # Bảo Docker build image từ file Dockerfile nằm ở thư mục hiện tại
+    container_name: react_nginx_app
+    ports:
+      - "8080:80" # Map port 8080 của máy tính bạn vào port 80 của Nginx
+    restart: unless-stopped
