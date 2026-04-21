@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: userdb
+    ports:
+      # Map port 3305 của máy thật vào 3306 của container
+      - "3305:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin-ui
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: 123456
+    depends_on:
+      - db
+
+  app:
+    build: .
+    container_name: user-service-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      # Spring Boot trong Docker sẽ kết nối vào DB qua mạng nội bộ port 3306
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/userdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
+volumes:
+  mysql_data:
